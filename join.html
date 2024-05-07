@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="signup.css" />
+    <title>SIGN UP</title>
+    <style>
+        *{
+  margin: 0;
+  padding: 0;
+}
+body{
+  width: 100%;
+  /* background-image:  url(/home/abhinesh/Downloads/author.jpg ); */
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  font-family: sans-serif  ;
+}  
+
+:root {
+  --success-color: #6dfa42;
+  --error-color: #e73c75;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9fafb;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #fcf8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.form {
+  padding: 30px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control label {
+  color:#131111;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-control input:focus {
+  outline: 0;
+  border-color: #777;
+}
+
+.form-control.success input {
+  border-color: var(--success-color);
+}
+
+.form-control.error input {
+  border-color: var(--error-color);
+}
+
+.form-control small {
+  color: var(--error-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+.form button {
+  cursor: pointer;
+  background-color: #0a84fe;
+  border: 2px solid #e2e9ec;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="form" class="form">
+        <h2>SIGN UP</h2>
+        <div class="form-control">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter username" />
+          <small>Error Message</small>
+        </div>
+        <div class="form-control">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="Enter email" />
+          <small>Error Message</small>
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password" />
+          <small>Error Message</small>
+        </div>
+        <div class="form-control">
+          <label for="password2">Confirm Password</label>
+          <input type="password" id="password2" placeholder="Enter password again" />
+          <small>Error Message</small>
+        </div>
+        <!-- <button>
+        <div class="button">
+
+
+          <a href="#" class="btn">submit</a> </div>
+        </button> -->
+
+        
+          
+          <!-- <td>
+          
+          <a href="https://www.w3schools.com/js/js_assignment.asp"> -->
+          
+        <button id="submitButton"> Submit</button> 
+           
+          
+          
+          
+          </td>
+        </a>
+      </form>
+    </div>
+    <script src="sign.js"></script>
+    <script>
+
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const password2 = document.getElementById('password2');
+
+// show input error message
+function showError(input, message) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control error';
+  const small = formControl.querySelector('small');
+  small.innerText = message;
+}
+
+// show success message
+function showSuccess(input) {
+  formControl = input.parentElement;
+  formControl.className = 'form-control success';
+}
+
+//check email is valid
+function checkEmail(input) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (re.test(input.value.trim())) {
+    showSuccess(input);
+  } else {
+    showError(input, 'Enail is not valid');
+  }
+}
+
+//check required fields
+function checkRequired(inputArr) {
+  inputArr.forEach(function (input) {
+    if (input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
+//check input lenght
+function checkLength(input, min, max) {
+  if (input.value.length < min) {
+    showError(input, `${getFieldName(input)} must be at least ${min} characters`);
+  } else if (input.value.length > max) {
+    showError(input, `${getFieldName(input)} must be less than ${max} characters`);
+  } else {
+    showSuccess(input);
+  }
+}
+
+// check passwords match
+
+function checkPasswordsMatch(input1, input2) {
+  if (input1.value !== input2.value) {
+    showError(input2, 'Passwords do not match');
+  }
+}
+
+// Get fieldname
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+// Event listeners
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  checkRequired([username, email, password, password2]);
+  checkLength(username, 3, 15);
+  checkLength(password, 6, 25);
+  checkEmail(email);
+  checkPasswordsMatch(password, password2);
+  
+  
+});
+
+
+// if(password.value.length >= 8){
+
+// document.getElementById("submitButton").addEventListener("click", function() {
+//     window.location.href = "https://app.socialpilot.co/analytics/linkedin";
+// })
+
+// }
+function checkPasswordsMatch(){
+	console.log("tttttttttttttttttttt")
+    var password = document.getElementById("password");
+    var length = document.getElementById("password2");
+
+    
+
+    if(password2.value.length >= 8){
+      //alert("Login Succesfull");
+  //file:///home/abhinesh/nodeproject/new%20website/newpage.html
+      window.location.replace("./login.html");
+      return false;
+  }
+  else{
+      alert("sign up  Failed");
+  }
+}
+
+
+
+
+      
+      // let email =document.getElementById("email")
+
+
+
+
+if(password.value.length >= 8){
+
+      document.getElementById("submitButton").addEventListener("click", function() {
+          window.location.href = "https://app.socialpilot.co/analytics/linkedin";
+      });
+
+    }
+  </script>
+  </body>
+</html>
