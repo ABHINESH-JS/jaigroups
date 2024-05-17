@@ -77,4 +77,6 @@ $(document).ready(function(){
 	map.setStyle("map_style");
 }());
 
+
+
 });

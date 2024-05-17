@@ -901,7 +901,7 @@ body{
 	padding:120px 0;
 }
 .fun-facts{
-	background:url('img/hand\ shake.jpg');
+	background:url('img/jack.jpg');
 	background-size:cover;
 	background-repeat:no-repeat;
 }
@@ -1138,6 +1138,7 @@ body{
 .portfolio .single-pf img{
 	height:100%;
 	width:100%;
+	object-fit: fill;
 }
 .portfolio .single-pf:before{
 	position:absolute;
@@ -1712,7 +1713,7 @@ body{
 	Start Clients CSS
 ==========================*/
 .clients{
-	background-image:url('img/client-bg.jpg');
+	background-image:url('img/jack.jpg');
 	background-size:cover;
 	background-position:center;
 	padding:100px 0px;
