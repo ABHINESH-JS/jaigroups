@@ -1720,7 +1720,11 @@ body{
 	position:relative;
 }
 .clients .single-clients{
-	
+	width: 100%;
+	cursor: pointer;
+	text-align: center;
+	float: none;
+	padding: 0 35px;
 }
 .clients .single-clients img {
 	width: 100%;
